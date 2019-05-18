@@ -33,11 +33,11 @@ def get_system():
         print('Esepecifique o sistema')
         exit(1)
 
-    if system in ['SIHSUS', 'SIASUS', 'SIM', 'CIH', 'CIHA', 'SINASC', 'SISPRENATAL']:
+    if system in DATASUS_DB_TYPES.keys():
         # print('Selected system: ' + system)
         return system
 
-    print('System: '+system+' does not exist in Datasus')
+    print('Sistema: '+system+' nao existe no Datasus, ou nao esta disponivel para download')
     exit(1)
 
 

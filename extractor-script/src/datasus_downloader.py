@@ -25,9 +25,10 @@ def save_log_non_existent_file(filename):
 
     with open(log_name, "a") as error_log:
         error_log.write(filename+' does not exist\n')
+    print("Arquivo " + filename + " nao existe")
 
 
-def if_file_is_empty_delete_it(raw_file):
+def if_file_is_empty_delete_it(raw_file, filename):
     if os.stat(raw_file).st_size == 0:
         os.remove(raw_file)
 
@@ -46,7 +47,7 @@ def download(file_path, filename):
 
         save_log_on_errors(result, filename)
         # todo it's better to delete on local after download than list all the files in ftp and check before download?
-        if_file_is_empty_delete_it(raw_file)
+        if_file_is_empty_delete_it(raw_file, filename)
     except:
         save_log_non_existent_file(filename)
         return
