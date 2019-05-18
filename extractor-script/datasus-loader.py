@@ -7,11 +7,13 @@ from src.converter import dbc2csv
 # todo: mapear ranges e retornar msg quando nao tem
 # todo nao baixar tudo de novo se para o extractor-script
 def main():
+
+    system, date_range, file_types, states = filters.get_filters()
     print('Iniciando carga de dados...')
 
-    for date in filters.getDateRange():
-        for file_type in filters.get_types():
-            for state in filters.states():
+    for date in date_range:
+        for file_type in file_types:
+            for state in states:
                 print('Data: ' + date)
                 print('Tipo de arquivos: ' + file_type)
                 print('UF: ' + state)
@@ -23,7 +25,7 @@ def main():
                 #     print("Stopping...")
                 #     exit(1)
 
-                path_file, filename = build_file_path(filters.system(), file_type, date, state)
+                path_file, filename = build_file_path(system, file_type, date, state)
 
                 # Downloads files into raw-files
                 datasus_downloader.download(path_file, filename)

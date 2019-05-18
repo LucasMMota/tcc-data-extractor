@@ -3,8 +3,7 @@ This project aims to access a given DataSUS system databse and download its data
 
 Example:
  
-`python datasus-loader.py --fromSystems='SIA,SIH,SINASC' --toDatabase='<mongo-dbase-name>'
---filterFrom='01/2010' --filterTo='12/2011' --filterUF='SP,RJ'`
+`python datasus-loader.py --system=SIASUS --dateFrom=01/2010 --dateTo=12/2011 --states=SP,RJ `
 ###Steps
 
 #####Extraction
