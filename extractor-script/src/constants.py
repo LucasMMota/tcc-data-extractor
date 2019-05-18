@@ -2,7 +2,7 @@
 from os.path import dirname, abspath
 
 RAW_FILES_DIR = dirname(dirname(abspath(__file__)))+'/raw-files/'
-ERROR_LOG_FILES_DIR = dirname(dirname(abspath(__file__)))+'/error-logs/' # Todo talvez chamar apenas de logs
+ERROR_LOG_FILES_DIR = dirname(dirname(abspath(__file__)))+'/execution-logs/'  # Todo talvez chamar apenas de logs
 SRC_DIR = (dirname(abspath(__file__)))
 CONVERTED_FILES_DIR = dirname(dirname(abspath(__file__)))+'/converted-files/'
 
@@ -55,11 +55,22 @@ CONVERTED_FILES_DIR = dirname(dirname(abspath(__file__)))+'/converted-files/'
 DATASUS_DB_TYPES = {
     'SIHSUS': ['RD', 'RJ', 'SP', 'ER'],
     'SIASUS': ['AB', 'ABO', 'ACF', 'AD', 'AM', 'AN', 'AQ', 'AR', 'ATD', 'PA', 'PS', 'SAD'],
-    'SIM': ['DOP', 'DO', 'DOFETP', 'DOFET', 'DOEXTP', 'DOEXT', 'DOINFP', 'DOINF', 'DOMATP', 'DOMAT'],
     'CIH': ['CR'],
     'CIHA': ['CIHA'],
-    'SINASC': ['DN', 'DNP'],
     'SISPRENATAL': ['PN']
+    # todo analisar estrutura de arquivos['DOFETP', 'DOFET', 'DOEXTP', 'DOEXT', 'DOINFP', 'DOINF', 'DOMATP', 'DOMAT'],
+    # 'SIM': ['DOP', 'DO'],
+    # 'SINASC': ['DN', 'DNP'],
+}
+
+DATASUS_SYSTEM_PATHS = {
+    'SIHSUS': '/dissemin/publicos/SIHSUS/200801_/dados/',
+    'SIASUS': '/dissemin/publicos/SIASUS/200801_/Dados/',
+    'CIH': '/dissemin/publicos/CIH/200801_201012/Dados/',
+    'CIHA': '/dissemin/publicos/CIHA/201101_/Dados/',
+    'SISPRENATAL': '/dissemin/publicos/SISPRENATAL/201201_/Dados/',
+    # 'SIM': '/dissemin/publicos/SIM/PRELIM/DOFET/', # todo
+    #'SINASC': '/dissemin/publicos/SINASC/NOV/DNRES/', # todo por ano
 }
 
 # Todo: mapear range de data pra cada tipo fara facilitar o retorno ao usuario

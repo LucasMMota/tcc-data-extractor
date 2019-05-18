@@ -73,5 +73,9 @@ def download_and_convert(system, date_range, file_types, states):
                 # Converts files and sabe on converted-files
                 dbc2csv(filename)
 
-    # Todo load into db
     utils.clean_raw_files()
+
+
+# Todo load into db
+def load_to_database():
+    return

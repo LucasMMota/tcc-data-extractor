@@ -1,13 +1,11 @@
 import os
 import shutil
-from constants import RAW_FILES_DIR, CONVERTED_FILES_DIR
+from constants import RAW_FILES_DIR, CONVERTED_FILES_DIR, DATASUS_SYSTEM_PATHS
 
 
 def build_file_path(system, file_type, date, state):
+    path = DATASUS_SYSTEM_PATHS[system]
     filename = file_type + state + date + '.dbc'
-    # todo verificar os paths dos sistemas
-    # se o sistema e X pegar path Yx
-    path = '/dissemin/publicos/'+system+'/200801_/Dados/'
 
     return path, filename
 
