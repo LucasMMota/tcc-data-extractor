@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=gnome-sudoku
+Name[en_US]=Datasus - Loader
+Exec=sh -e -c "exec \\"\\$(dirname \\"\\$0\\")/.sh/aplicacao.sh\\";$SHELL" %k
+Comment[en_US]=bla=foo
+Name=Datasus MLoader
+Comment=bla=foo
+Icon=gnome-sudoku
+GenericName[en_US.UTF-8]=llllllllooooo
+TargetEnvironment=Unity
