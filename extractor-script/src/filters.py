@@ -118,8 +118,8 @@ def get_date_range():
 
 
 # todo add on filter
-def getDownloadLimit():
-    return 1000
+# def get_download_limit():
+#     return 1000
 
 
 def get_filters():

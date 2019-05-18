@@ -2,5 +2,4 @@
 .idea*
 
 extractor-script/error-logs/
-extractor-script/raw-files/*
 extractor-script/converted-files/*

@@ -2,6 +2,8 @@ import os
 import ftplib
 from .constants import RAW_FILES_DIR, ERROR_LOG_FILES_DIR
 from os.path import exists
+from converter import dbc2csv
+import utils as utils
 
 
 def save_log_on_errors(result, filename):
@@ -48,3 +50,28 @@ def download(file_path, filename):
     except:
         save_log_non_existent_file(filename)
         return
+
+
+def download_and_convert(system, date_range, file_types, states):
+    print('Iniciando carga de dados...')
+
+    utils.create_raw_files()
+    utils.create_converted_files()
+
+    for date in date_range:
+        for file_type in file_types:
+            for state in states:
+                print('Data: ' + date)
+                print('Tipo de arquivos: ' + file_type)
+                print('UF: ' + state)
+
+                path_file, filename = utils.build_file_path(system, file_type, date, state)
+
+                # Downloads files into raw-files
+                download(path_file, filename)
+
+                # Converts files and sabe on converted-files
+                dbc2csv(filename)
+
+    # Todo load into db
+    utils.clean_raw_files()
