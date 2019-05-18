@@ -1,5 +1,8 @@
 # IntelliJ
 .idea*
 
+# script
 extractor-script/execution-logs/
 extractor-script/converted-files/*
+
+venv/
