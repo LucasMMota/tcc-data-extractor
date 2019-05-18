@@ -5,7 +5,7 @@ echo 'Abrindo.....'
 DSUS_EXTRACTOR_ROOT_PATH=$(dirname $(dirname $(dirname $0)))
 
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src
-pwd
+
 pip install -r requirements.txt
 
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src/webserver/
