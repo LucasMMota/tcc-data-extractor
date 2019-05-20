@@ -4,7 +4,7 @@
 #ativa a lib
 library("read.dbc")
 
-# extractor-script arquivos dbc em csv
+# extractor_script arquivos dbc em csv
 dbc2dbf <- function(rawDir, convertedDir, file) {
     # leio o dbc
     x <- read.dbc(paste(rawDir, file, sep=""))

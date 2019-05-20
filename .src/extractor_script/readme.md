@@ -3,7 +3,7 @@ This project aims to access a given DataSUS system databse and download its data
 
 Example:
  
-`python datasus-loader.py --system=SIASUS --dateFrom=01/2010 --dateTo=12/2011 --states=SP,RJ `
+`python datasus_loader.py --system=SIASUS --dateFrom=01/2010 --dateTo=12/2011 --states=SP,RJ `
 ###Steps
 
 #####Extraction

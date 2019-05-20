@@ -6,7 +6,7 @@ Macos
 .idea*
 
 # script
-extractor-script/execution-logs/
-extractor-script/converted-files/*
+extractor_script/execution-logs/
+extractor_script/converted-files/*
 
 venv/

@@ -1,14 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <style>
+        .dropdown.bootstrap-select{
+            width: inherit !important;
+        }
+        .dropdown-menu{
+            width: 420px;
+        }
+        .bootstrap-select > .dropdown-toggle.bs-placeholder {
+                background: #e2e2e2 !important;
+        }
 
+    </style>
     <title>DATASUS - Loader</title>
 </head>
 <body>
@@ -19,7 +29,6 @@
         </div>
     </div>
 </header>
-
 <main role="main">
     <div class="album py-5 bg-light">
         <div class="container">
@@ -28,28 +37,95 @@
                 <div class="col-md-6">
                     <form>
                         <div class="col-md-12">
-                            <!-- Sistema-->
+                            <!-- Sistema -->
                             <div class="form-group row">
                                 <label for="input_sistema" class="col-sm-2 col-form-label">Sistema</label>
                                 <div class="col-sm-10">
-                                    <select name="input_sistema" id="input_sistema" class="custom-select">
-                                        <option selected>Seleciona o sistema DATASUS</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select name="input_sistema" id="input_sistema"
+                                            class="selectpicker"
+                                            title="Selecione o sistema DATASUS">
+                                        <option value="SIHSUS">SIHSUS</option>
+                                        <option value="SIASUS">SIASUS</option>
+                                        <option value="CIHA">CIHA</option>
+                                        <option value="SISPRENATAL">SISPRENATAL</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <!-- Tipo-->
+                            <!-- Tipo -->
                             <div class="form-group row">
                                 <label for="input_sistema" class="col-sm-2 col-form-label">Tipo</label>
                                 <div class="col-sm-10">
-                                    <select name="input_tipo" id="input_tipo" class="custom-select">
-                                        <option selected>Seleciona o sistema DATASUS</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select name="input_tipo" id="input_tipo"
+                                            class="selectpicker" multiple
+                                            title="Selecione o tipo de dados do sistema">
+                                        <optgroup class="options-tipo options-sistema-SIHSUS" label="SIHSUS">
+                                            <option value="RD">RD</option>
+                                            <option value="RJ">RJ</option>
+                                            <option value="SP">SP</option>
+                                            <option value="ER">ER</option>
+                                        </optgroup>
+                                        <optgroup class="options-tipo options-sistema-SIASUS" label="SIASUS">
+                                            <option value="AB">AB</option>
+                                            <option value="ABO">ABO</option>
+                                            <option value="ACF">ACF</option>
+                                            <option value="AD">AD</option>
+                                            <option value="AM">AM</option>
+                                            <option value="AN">AN</option>
+                                            <option value="AQ">AQ</option>
+                                            <option value="AR">AR</option>
+                                            <option value="ATD">ATD</option>
+                                            <option value="PA">PA</option>
+                                            <option value="PS">PS</option>
+                                            <option value="SAD">SAD</option>
+                                        </optgroup>
+                                        <optgroup class="options-tipo options-sistema-CIHA" label="CIHA">
+                                            <option value="CR">CR</option>
+                                            <option value="CIHA">CIHA</option>
+                                        </optgroup>
+                                        <optgroup class="options-tipo options-sistema-SISPRENATAL" label="SISPRENATAL">
+                                            <option value="PN">PN</option>
+                                        </optgroup>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <!-- State -->
+                            <div class="form-group row">
+                                <label for="input_sistema" class="col-sm-2 col-form-label">Estado</label>
+                                <div class="col-sm-10">
+                                    <select name="input_estado" id="input_estado"
+                                            class="selectpicker" multiple
+                                            data-live-search="true"
+                                            title="Selecione o tipo de dados do sistema">
+                                        <option value="AC">AC</option>
+                                        <option value="AL">AL</option>
+                                        <option value="AM">AM</option>
+                                        <option value="AP">AP</option>
+                                        <option value="BA">BA</option>
+                                        <option value="CE">CE</option>
+                                        <option value="DF">DF</option>
+                                        <option value="ES">ES</option>
+                                        <option value="GO">GO</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MG">MG</option>
+                                        <option value="MS">MS</option>
+                                        <option value="MT">MT</option>
+                                        <option value="PA">PA</option>
+                                        <option value="PB">PB</option>
+                                        <option value="PE">PE</option>
+                                        <option value="PI">PI</option>
+                                        <option value="PR">PR</option>
+                                        <option value="RJ">RJ</option>
+                                        <option value="RN">RN</option>
+                                        <option value="RO">RO</option>
+                                        <option value="RR">RR</option>
+                                        <option value="RS">RS</option>
+                                        <option value="SC">SC</option>
+                                        <option value="SE">SE</option>
+                                        <option value="SP">SP</option>
+                                        <option value="TO">TO</option>
                                     </select>
                                 </div>
                             </div>
@@ -83,7 +159,8 @@
                                 </div>
                             </div>
 
-                            <div class="custom-control custom-checkbox">
+                            <!--BD-->
+                            <!--<div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Carregar no banco de
                                     dados?</label>
@@ -94,9 +171,9 @@
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="input_bd_host" placeholder="//">
                                 </div>
-                            </div>
+                            </div>-->
 
-                            <button type="button" class="btn btn-primary">Baixar</button>
+                            <button type="submit" class="btn btn-primary">Baixar dados</button>
                         </div>
                     </form>
                 </div>
@@ -116,23 +193,38 @@
 <!--                href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>-->
 <!--    </div>-->
 <!--</footer>-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script>
+    jQuery(document).ready(()=>{
+        $('#input_sistema').on('change', (elem)=>{
+            sistema = elem.target.value
+            $('#input_tipo').selectpicker('deselectAll');
+            $('.options-tipo').attr('disabled', 'true')
+            $('.options-sistema-'+sistema).removeAttr('disabled')
+        });
 
 
-
-
-
-
-
-
+        $('form').on('submit', (e)=>{
+        console.log(00000000)
+        e.preventDefault();
+            $.ajax({
+              url: '/datasus-downloader',
+              type: 'get',
+              data: $('form').serialize(),
+              dataType: 'json',
+              success: function(data) {
+                  console.log('success')
+              },
+              error: function(data) {
+                  console.log('error')
+              }
+            });
+        });
+    });
 
 </script>
-<script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-        crossorigin="anonymous"></script>
 </body>
-
 </html>
