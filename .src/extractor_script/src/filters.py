@@ -1,8 +1,6 @@
-import sys
 import argparse
 from .constants import DATASUS_DB_TYPES, ALL_STATES
-import datetime
-import pandas as pd
+
 
 def get_args():
     # initiate the parser
@@ -91,32 +89,6 @@ def date_to():
     return date
 
 
-# Gets range data to read available files
-def get_date_range():
-    try:
-        from_filter = date_from()
-        to_filter = date_to()
-
-        from_month = from_filter.split('/')[0]
-        from_year = from_filter.split('/')[1]
-
-        to_month = to_filter.split('/')[0]
-        to_year = to_filter.split('/')[1]
-
-        start = datetime.datetime.strptime("01-"+from_month+"-"+from_year, "%d-%m-%Y")
-        end = datetime.datetime.strptime("01-"+to_month+"-"+to_year, "%d-%m-%Y")
-
-        date_range = pd.date_range(start, end, freq='MS').strftime("%y%m").tolist()
-
-        if date_range is None:
-            exit(1)
-
-        return date_range
-    except:
-        print('Especifique um periodo valido, exemplo: --dateFrom=01/2017 --dateTo=12/2017')
-        exit(1)
-
-
 # todo add on filter
 # def get_download_limit():
 #     return 1000
@@ -126,6 +98,8 @@ def get_filters():
     system = get_system()
     file_types = get_types()
     states = get_states()
-    date_range = get_date_range()
 
-    return system, date_range, file_types, states
+    from_filter = date_from()
+    to_filter = date_to()
+
+    return system, from_filter, to_filter, file_types, states
