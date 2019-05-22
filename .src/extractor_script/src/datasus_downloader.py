@@ -28,6 +28,17 @@ def save_log_non_existent_file(filename):
     print("Arquivo " + filename + " nao existe")
 
 
+def save_log_execution_error(e):
+    if not exists(ERROR_LOG_FILES_DIR):
+        os.makedirs(ERROR_LOG_FILES_DIR)
+
+    log_name = ERROR_LOG_FILES_DIR+'execution-error.txt'
+
+    with open(log_name, "a") as error_log:
+        error_log.write('An error ocurred on the execution: ' + e + '\n')
+    print("An error ocurred on the execution")
+
+
 def if_file_is_empty_delete_it(raw_file, filename):
     if os.stat(raw_file).st_size == 0:
         os.remove(raw_file)
@@ -54,28 +65,36 @@ def download(file_path, filename):
 
 
 def download_and_convert(system, date_range, file_types, states):
-    print('Iniciando carga de dados...')
+    try:
+        print('Iniciando carga de dados...')
 
-    utils.create_raw_files()
-    utils.create_converted_files()
+        utils.create_raw_files()
+        utils.create_converted_files()
 
-    for date in date_range:
-        for file_type in file_types:
-            for state in states:
-                print('Data: ' + date)
-                print('Tipo de arquivos: ' + file_type)
-                print('UF: ' + state)
+        for date in date_range:
+            for file_type in file_types:
+                print(states)
+                for state in states:
+                    print(state)
+                    print('Data: ' + date)
+                    print('Tipo de arquivos: ' + file_type)
+                    print('UF: ' + state)
 
-                path_file, filename = utils.build_file_path(system, file_type, date, state)
+                    path_file, filename = utils.build_file_path(system, file_type, date, state)
 
-                # Downloads files into raw-files
-                download(path_file, filename)
+                    # Downloads files into raw-files
+                    download(path_file, filename)
 
-                # Converts files and sabe on converted-files
-                dbc2csv(filename)
+                    # Converts files and sabe on converted-files
+                    dbc2csv(filename)
 
-    utils.clean_raw_files()
+        utils.clean_raw_files()
 
+        return True
+    except Exception as e:
+        print(e)
+        save_log_execution_error(str(e))
+        return False
 
 # Todo load into db
 def load_to_database():
