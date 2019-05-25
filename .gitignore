@@ -10,3 +10,9 @@ Macos
 .src/extractor_script/execution-logs/
 
 *.pyc
+
+
+
+.old-venv
+.venv/lib/python3.7/site-packages/numpy
+.venv/lib/python3.7/site-packages/pandas

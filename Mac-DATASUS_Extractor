@@ -10,8 +10,8 @@ PYTHON_LOCAL=$DSUS_EXTRACTOR_ROOT_PATH/.venv/bin/python
 
 #pwd
 
-#cd $DSUS_EXTRACTOR_ROOT_PATH/.src
-#$PIP_LOCAL install -r requirements.txt
+cd $DSUS_EXTRACTOR_ROOT_PATH/.src
+$PIP_LOCAL install -r requirements.txt
 
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src/webserver/
 
