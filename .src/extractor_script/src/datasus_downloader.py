@@ -97,5 +97,6 @@ def download_and_convert(system, date_range, file_types, states):
         return False
 
 # Todo load into db
+# todo move dir conveted e log pro dir visivel
 def load_to_database():
     return
