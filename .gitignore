@@ -8,11 +8,35 @@ Macos
 # script
 .src/extractor_script/converted-files/
 .src/extractor_script/execution-logs/
+dados/
 
 *.pyc
 
 
-
-.old-venv
-.venv/lib/python3.7/site-packages/numpy
-.venv/lib/python3.7/site-packages/pandas
+# ignoring .venv heavy site-packages
+.venv/lib/python3.7/site-packages/Click-7.0.dist-info/
+.venv/lib/python3.7/site-packages/Flask-1.0.2.dist-info/
+.venv/lib/python3.7/site-packages/Jinja2-2.10.1.dist-info/
+.venv/lib/python3.7/site-packages/MarkupSafe-1.1.1.dist-info/
+.venv/lib/python3.7/site-packages/Werkzeug-0.15.4.dist-info/
+.venv/lib/python3.7/site-packages/click/
+.venv/lib/python3.7/site-packages/dateutil/
+.venv/lib/python3.7/site-packages/flask/
+.venv/lib/python3.7/site-packages/itsdangerous-1.1.0.dist-info/
+.venv/lib/python3.7/site-packages/itsdangerous/
+.venv/lib/python3.7/site-packages/jinja2/
+.venv/lib/python3.7/site-packages/markupsafe/
+.venv/lib/python3.7/site-packages/numpy-1.16.3.dist-info/
+.venv/lib/python3.7/site-packages/python_dateutil-2.8.0.dist-info/
+.venv/lib/python3.7/site-packages/pytz-2019.1.dist-info/
+.venv/lib/python3.7/site-packages/pytz/
+.venv/lib/python3.7/site-packages/six-1.12.0.dist-info/
+.venv/lib/python3.7/site-packages/six.py
+.venv/lib/python3.7/site-packages/werkzeug/
+.venv/lib/python3.7/site-packages/numpy/
+.venv/lib/python3.7/site-packages/pandas-0.24.2.dist-info/
+.venv/lib/python3.7/site-packages/pandas/
+.venv/bin/f2py
+.venv/bin/f2py3
+.venv/bin/f2py3.7
+.venv/bin/flask
