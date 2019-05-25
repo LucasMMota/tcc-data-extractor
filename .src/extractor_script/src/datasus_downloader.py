@@ -1,8 +1,8 @@
 import os
 import ftplib
 from .constants import RAW_FILES_DIR, ERROR_LOG_FILES_DIR
-from converter import dbc2csv
-import utils as utils
+from .converter import dbc2csv
+from .utils import clean_raw_files, create_raw_files, create_converted_files, build_file_path
 
 
 def save_log_on_errors(result, filename):
@@ -67,8 +67,8 @@ def download_and_convert(system, date_range, file_types, states):
     try:
         print('Iniciando carga de dados...')
 
-        utils.create_raw_files()
-        utils.create_converted_files()
+        create_raw_files()
+        create_converted_files()
 
         for date in date_range:
             for file_type in file_types:
@@ -79,7 +79,7 @@ def download_and_convert(system, date_range, file_types, states):
                     print('Tipo de arquivos: ' + file_type)
                     print('UF: ' + state)
 
-                    path_file, filename = utils.build_file_path(system, file_type, date, state)
+                    path_file, filename = build_file_path(system, file_type, date, state)
 
                     # Downloads files into raw-files
                     download(path_file, filename)
@@ -87,7 +87,7 @@ def download_and_convert(system, date_range, file_types, states):
                     # Converts files and sabe on converted-files
                     dbc2csv(filename)
 
-        utils.clean_raw_files()
+        clean_raw_files()
 
         return True
     except Exception as e:

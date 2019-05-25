@@ -1,6 +1,6 @@
 import os
 import shutil
-from constants import RAW_FILES_DIR, CONVERTED_FILES_DIR, DATASUS_SYSTEM_PATHS
+from .constants import RAW_FILES_DIR, CONVERTED_FILES_DIR, DATASUS_SYSTEM_PATHS
 import datetime
 import pandas as pd
 
