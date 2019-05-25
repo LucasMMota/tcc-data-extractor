@@ -2,9 +2,9 @@
 from os.path import dirname, abspath
 
 RAW_FILES_DIR = dirname(dirname(abspath(__file__)))+'/raw-files/'
-ERROR_LOG_FILES_DIR = dirname(dirname(abspath(__file__)))+'/execution-logs/'  # Todo talvez chamar apenas de logs
+ERROR_LOG_FILES_DIR = dirname(dirname(dirname(dirname(abspath(__file__)))))+'/'  # Todo talvez chamar apenas de logs
 SRC_DIR = (dirname(abspath(__file__)))
-CONVERTED_FILES_DIR = dirname(dirname(abspath(__file__)))+'/converted-files/'
+CONVERTED_FILES_DIR = dirname(dirname(dirname(dirname(abspath(__file__)))))+'/dados/' # todo mudar no doc o converted-files de staging etc pros novos nomes
 
 """
     SIHSUS

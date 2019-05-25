@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo 'Instalando dependências.....'
+
+DSUS_EXTRACTOR_ROOT_PATH=$(dirname $0)
+
+#pwd
+
+cd $DSUS_EXTRACTOR_ROOT_PATH/.src
+
+pip install -r requirements.txt
+
+cd $DSUS_EXTRACTOR_ROOT_PATH/.src/webserver/
+
+echo "Inciando servidor local:"
+# executa o segundo sem esperar o primeiro
+python open_url.py & python server.py
+
+echo "Aplicação encerrada. Feche o terminal."
+#wait $!

@@ -1,38 +1,37 @@
 import os
 import ftplib
 from .constants import RAW_FILES_DIR, ERROR_LOG_FILES_DIR
-from os.path import exists
 from converter import dbc2csv
 import utils as utils
 
 
 def save_log_on_errors(result, filename):
-    if not exists(ERROR_LOG_FILES_DIR):
-        os.makedirs(ERROR_LOG_FILES_DIR)
+    # if not exists(ERROR_LOG_FILES_DIR):
+    #     os.makedirs(ERROR_LOG_FILES_DIR)
 
     if '226' not in result:
-        log_name = ERROR_LOG_FILES_DIR+'not-downloaded.txt'
+        log_name = ERROR_LOG_FILES_DIR+'log-nao-baixados.txt'
 
         with open(log_name, "a") as error_log:
             error_log.write(filename+'\n')
 
 
 def save_log_non_existent_file(filename):
-    if not exists(ERROR_LOG_FILES_DIR):
-        os.makedirs(ERROR_LOG_FILES_DIR)
+    # if not exists(ERROR_LOG_FILES_DIR):
+    #     os.makedirs(ERROR_LOG_FILES_DIR)
 
-    log_name = ERROR_LOG_FILES_DIR+'not-existent-files.txt'
+    log_name = ERROR_LOG_FILES_DIR+'log-arquivos-inexistentes-no-datasus.txt'
 
     with open(log_name, "a") as error_log:
-        error_log.write(filename+' does not exist\n')
+        error_log.write(filename+' nao existe\n')
     print("Arquivo " + filename + " nao existe")
 
 
 def save_log_execution_error(e):
-    if not exists(ERROR_LOG_FILES_DIR):
-        os.makedirs(ERROR_LOG_FILES_DIR)
+    # if not exists(ERROR_LOG_FILES_DIR):
+    #     os.makedirs(ERROR_LOG_FILES_DIR)
 
-    log_name = ERROR_LOG_FILES_DIR+'execution-error.txt'
+    log_name = ERROR_LOG_FILES_DIR+'log-erro-de-execucao.txt'
 
     with open(log_name, "a") as error_log:
         error_log.write('An error ocurred on the execution: ' + e + '\n')

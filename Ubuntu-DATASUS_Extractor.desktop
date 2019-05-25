@@ -4,7 +4,7 @@ Type=Application
 Terminal=false
 Icon[en_US]=gnome-sudoku
 Name[en_US]=Datasus - Loader
-Exec=sh -e -c "exec \\"\\$(dirname \\"\\$0\\")/.sh/aplicacao.sh\\";$SHELL" %k
+Exec=sh -e -c "exec \\"\\$(dirname \\"\\$0\\")/.ubuntu/aplicacao.sh\\";$SHELL" %k
 Comment[en_US]=bla=foo
 Name=Datasus MLoader
 Comment=bla=foo
