@@ -2,9 +2,9 @@
 
 unset PYTHONPATH
 
-DSUS_EXTRACTOR_ROOT_PATH=$(dirname $0)
-PIP_LOCAL=$DSUS_EXTRACTOR_ROOT_PATH/python/3.7.2_2/bin/pip3
-PYTHON_LOCAL=$DSUS_EXTRACTOR_ROOT_PATH/python/3.7.2_2/bin/python3
+DSUS_EXTRACTOR_ROOT_PATH=$(dirname $(dirname $0))
+PIP_LOCAL=$DSUS_EXTRACTOR_ROOT_PATH/ubuntu-python-src/bin/pip3
+PYTHON_LOCAL=$DSUS_EXTRACTOR_ROOT_PATH/ubuntu-python-src/bin/python3
 
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src
 
