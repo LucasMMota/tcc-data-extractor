@@ -8,7 +8,7 @@ def dbc2csv(raw_filename):
     tries = 2
     while tries > 0:
         try:
-            print(subprocess.call("/usr/local/bin/Rscript --vanilla " + dbc2csv_path, shell=True))
+            print(subprocess.call("/usr/bin/Rscript --vanilla " + dbc2csv_path, shell=True))
             tries = 0
             return True
         except:
