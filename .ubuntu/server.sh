@@ -1,9 +1,13 @@
 #!/bin/bash
 
 if ! hash python; then
+	echo " "
+	echo " "
+	echo " "
     echo "Python não instalado. É necessário possui a versao Python 2.7 ou superior."
     echo "Para instalar, execute o aplicativo SETUP.desktop e aguarde o término da instalação."
-    echo "Para instalar será solicitada a sua senha da máquina"
+    echo "Para instalar será solicitada a sua senha da máquina."
+    echo "Quando for perguntado se deseja continuar: 'DO you want to continue yn' Yn, insira Y e aguarde."		
     wait $!
     exit 1
 fi
@@ -16,11 +20,6 @@ if [ "$ver" -lt "27" ]; then
 fi
 
 DSUS_EXTRACTOR_ROOT_PATH=$(dirname $(dirname $0))
-
-cd $DSUS_EXTRACTOR_ROOT_PATH/.src
-
-pip install -r requirements.txt
-
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src/webserver/
 
 echo ">>>>>>>>>>>>>>>>>>>>>>>>INICIANDO APLICACAO<<<<<<<<<<<<<<<<<<<<<<<<"
