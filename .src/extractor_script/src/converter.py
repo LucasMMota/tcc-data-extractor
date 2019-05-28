@@ -1,4 +1,5 @@
 import subprocess
+import commands
 from .constants import SRC_DIR, RAW_FILES_DIR, CONVERTED_FILES_DIR
 
 
@@ -8,7 +9,12 @@ def dbc2csv(raw_filename):
     tries = 2
     while tries > 0:
         try:
-            print(subprocess.call("/usr/bin/Rscript --vanilla " + dbc2csv_path, shell=True))
+            R_PATH = commands.getstatusoutput('which Rscript')[1]
+            print("Rscript path: " + R_PATH) # todo remover
+            print(">>>>>>>>>"+R_PATH + " --vanilla " + dbc2csv_path) # todo remover
+
+            result = subprocess.call(R_PATH + " --vanilla " + dbc2csv_path, shell=True)
+            print(result)
             tries = 0
             return True
         except:
