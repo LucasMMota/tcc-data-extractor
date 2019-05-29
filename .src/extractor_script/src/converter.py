@@ -10,6 +10,7 @@ def dbc2csv(raw_filename):
     while tries > 0:
         try:
             R_PATH = commands.getstatusoutput('which Rscript')[1]
+            # todo instalar pacote do R se nao estiver disponivel..
             print("Rscript path: " + R_PATH) # todo remover
             print(">>>>>>>>>"+R_PATH + " --vanilla " + dbc2csv_path) # todo remover
 

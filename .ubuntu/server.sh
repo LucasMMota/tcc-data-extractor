@@ -9,6 +9,11 @@ if ! hash python; then
     echo "Para instalar será solicitada a sua senha da máquina."
     echo "Quando for perguntado se deseja continuar: 'DO you want to continue yn' Yn, insira Y e aguarde."		
     wait $!
+    while [ 1 ]
+    do
+        echo ""
+        sleep 100
+    done
     exit 1
 fi
 
@@ -16,6 +21,11 @@ ver=$(python -V 2>&1 | sed 's/.* \([0-9]\).\([0-9]\).*/\1\2/')
 if [ "$ver" -lt "27" ]; then
     echo "This script requires python 2.7 or greater"
     wait $!
+    while [ 1 ]
+    do
+        echo ""
+        sleep 100
+    done
     exit 1
 fi
 
