@@ -12,8 +12,8 @@ if ! hash Rscript; then
 	sudo apt-get install r-base
 fi
 
-DSUS_EXTRACTOR_ROOT_PATH=$(dirname $(dirname $0))
-cd $DSUS_EXTRACTOR_ROOT_PATH/.src
+
+
 
 pip install Flask
 pip install pandas
@@ -21,6 +21,10 @@ pip install pandas
 # retry
 pip install Flask
 pip install pandas
+
+DSUS_EXTRACTOR_ROOT_PATH=$(dirname $0)
+cd $DSUS_EXTRACTOR_ROOT_PATH/.src
+pwd
 Rscript r-requirements.r
 
 
