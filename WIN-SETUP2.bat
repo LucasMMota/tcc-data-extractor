@@ -54,7 +54,7 @@ pip install Flask
 pip install pandas
 
 CD "C:\Program Files\R\R-3.6.0\bin\"
-R.exe --no-save < %DATASUS_WORKINGDIR%.src\r-requirements.r
+Rscript.exe %DATASUS_WORKINGDIR%.src\r-requirements.r
 
 ECHO .
 ECHO .
