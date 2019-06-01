@@ -44,7 +44,6 @@ PAUSE
 ECHO "Verificando dependencias do projeto. Aguarde por favor."
 set DATASUS_WORKINGDIR=%~dp0
 set DATASUS_WEBSERVERDIR=%~dp0.src\webserver\
-::SET DSUS_PYPATH=%DATASUS_WORKINGDIR%win\Scripts\
 
 pip install Flask
 pip install pandas

@@ -35,3 +35,46 @@ Example:
 * e explicar como funciona
 
 
+
+
+WIN
+    .src
+    Python-Instalador.exe
+    Setup.bat
+    Aplicacao.bat
+
+Ubuntu
+    .src
+    Setup.sh
+    Aplicacao.sh
+
+Mac
+    .src
+    Setup.sh
+    Aplicacao.sh
+
+
+// WIN
+    solicitar que instale python ou ver se funciona colocar a pasta junto
+    win-server inicia server e abre aplicacao
+
+//ubuntu
+    É recomendável possuir antes o Python, PIP e R instalados. No entanto caso não possua é possível instalar
+    através do arquivo `setup.sh`
+
+    setup instala Python, PIP e R
+
+    Basta acessa a aplicacao abrindo o arquivo Aplicacao.sh que ira iniciar a aplicacao via web browser e ficará rodando em background
+
+
+//mac
+    igual ubuntu
+    
+    depois conectar com um bd...
+            essa parte vai ser tudo manual o cara so poe os detalhes de conexao
+    Verificar textos
+    Fazer documentacao de tudo / isntrucoes para usuario
+
+# todo fazer bench de qto tempo gasta com ferramentas diferentes
+                # ver tempo que gasta pra instalar qdo for colocar nas isntrucoes
+
