@@ -11,6 +11,7 @@ def dbc2csv(raw_filename):
     while tries > 0:
         try:
             if(platform.system() == 'Windows'):
+                dbc2csv_path = dbc2csv_path.replace('/', '\\')
                 R_PATH = '\"C:\Program Files\R\R-3.6.0\\bin\\Rscript.exe\"'
                 print(">>>>>>>>>" + R_PATH + " " + dbc2csv_path)  # todo remover
 
