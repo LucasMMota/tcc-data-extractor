@@ -1,1 +1,1 @@
-install.packages("read.dbc")
+install.packages("read.dbc", repos="https://cran.r-project.org")
