@@ -11,10 +11,10 @@ def dbc2csv(raw_filename):
     while tries > 0:
         try:
             if(platform.system() == 'Windows'):
-                R_PATH = "C:\Program Files\R\R-3.6.0\\bin\\R.exe"
-                print(">>>>>>>>>" + R_PATH + " --vanilla " + dbc2csv_path)  # todo remover
+                R_PATH = '\"C:\Program Files\R\R-3.6.0\\bin\\R.exe\"'
+                print(">>>>>>>>>" + R_PATH + " --no-save < " + dbc2csv_path)  # todo remover
 
-                result = subprocess.call(R_PATH + " --vanilla " + dbc2csv_path, shell=True)
+                result = subprocess.call(R_PATH + " --no-save < " + dbc2csv_path, shell=True)
                 print(result)
                 tries = 0
                 return True
