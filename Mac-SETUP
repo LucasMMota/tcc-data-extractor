@@ -1,5 +1,14 @@
 #!/bin/bash
 
+ECHO .
+ECHO .
+ECHO .
+ECHO INICIANDO INSTALACAO DOS REQUISITOS, PODE DEMORAR ALGUNS MINUTOS
+ECHO AGUARDE ATE MENSAGEM DE FINALIZACAO DA INSTALACAO
+ECHO .
+ECHO .
+ECHO .
+
 if ! hash python; then
 	sudo apt-get install python
 fi
@@ -28,10 +37,10 @@ pwd
 Rscript r-requirements.r
 
 
-echo " "
-echo " "
-echo " "
-echo ">>> Instalação realizada com sucesso! Feche o terminal."
+ECHO .
+ECHO .
+ECHO .
+ECHO ">>> INSTALACAO REALIZADA COM SUCESSO! FECHE O TERMINAL."
 wait $!
 
 while [ 1 ]
