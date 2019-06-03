@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <link rel="stylesheet"
+          href="https://getbootstrap.com/docs/4.3/examples/album/album.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style>
+        .dropdown.bootstrap-select{
+            width: inherit !important;
+        }
+        .dropdown-menu{
+            width: 420px;
+        }
+        .bootstrap-select > .dropdown-toggle.bs-placeholder {
+                background: #e2e2e2 !important;
+        }
+
+        .bootstrap-select .dropdown-menu[role='combobox']{
+            min-width: 100% !important;
+        }
+
+        main > div.album {
+            min-height: 590px;
+        }
+
+        .spinner-grow-sm {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .icon-header { font-size: 30px; }
+
+        form .col-form-label { font-weight: bold; }
+
+        .hover { cursor: pointer; }
+
+        .checkbox-bd {
+
+        }
+
+    </style>
+    <title>DATASUS Extractor</title>
+</head>
+<body>
+<header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center"><i class="material-icons icon-header">cloud_download</i>
+                <strong class="pl-3">DATASUS Extractor</strong></a>
+            <a href="/" class="navbar-brand d-flex align-items-center">Importar dados</a>
+            <a href="/inserir-no-banco-de-dados" class="navbar-brand d-flex align-items-center">Inserir no Banco de Dados</a>
+            <a href="/sobre" class="navbar-brand d-flex align-items-center">Sobre</a>
+        </div>
+    </div>
+</header>
+<main role="main">
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row pb-4">
+                <div class="col-sm-12">
+                    <h5>Utilize os filtros para selecionar os dados desejados para extração:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <form method="GET" action="/datasus-downloader">
+
+                        <!--BD-->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Host</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="input_bd_host">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Usuário</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="input_bd_user" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Senha</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control" name="input_bd_password" >
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center pt-4">
+                            <button id="btn-submit" class="btn btn-primary btn-lg" type="button">
+                                <span id="spinner-loading" class="spinner-grow spinner-grow-sm d-none" role="status"
+                                      aria-hidden="true"></span>
+                                Baixar Dados
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <h6>Desenvolvido por Lucas Mendes Mota da Fonseca | Orientação: Prof. Dra. Solange Nice Alves de Souza</h6>
+        <h6>Para contribuir acesse o projeto no <a href="https://github.com/LucasMMota/<todo>">GitHub</a></h6>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    var mock=()=>{
+        $('#input_sistema').val('SIHSUS');
+        $('#input_tipo').val(['SP']);
+        $('#input_estado').val(['RO']);
+        $('#input_de_mes').val('01');
+        $('#input_de_ano').val('2018');
+        $('#input_ate_mes').val('01');
+        $('#input_ate_ano').val('2018');
+    }
+    var validateForm = ()=>{
+        if (
+            !$('#input_sistema').val() ||
+            !$('#input_tipo').val().length ||
+            !$('#input_estado').val().length ||
+            !$('#input_de_mes').val() ||
+            !$('#input_de_ano').val() ||
+            !$('#input_ate_mes').val() ||
+            !$('#input_ate_ano').val()
+        ){
+            return false;
+        }
+        return true;
+    }
+
+    var activateBtn = () => {
+        $('#btn-submit').attr('disabled', 'true')
+        $('#spinner-loading').removeClass('d-none')
+    }
+
+    var deactivateBtn = () => {
+        $('#btn-submit').removeAttr('disabled')
+        $('#spinner-loading').addClass('d-none')
+    }
+
+    jQuery(document).ready(()=>{
+        $('#input_sistema').on('change', (elem)=>{
+            sistema = elem.target.value
+            $('#input_tipo').selectpicker('deselectAll');
+            $('.options-tipo').attr('disabled', 'true')
+            $('.options-sistema-'+sistema).removeAttr('disabled')
+        });
+
+        $('#btn-submit').on('click', (e)=>{
+                                                    //TODO REMOVER
+                                                    mock()
+            e.preventDefault();
+
+            valid = validateForm();
+            if (valid){
+                $.ajax({
+                  url: '/datasus-downloader',
+                  type: 'POST',
+                  data: $('form').serialize(),
+                  dataType: 'json',
+                  beforeSend: function() {
+                    activateBtn()
+                  },
+                  success: function(data) {
+                    swal('Dados importados com sucesso!', 'Confira no diretório "dados" na raíz do projeto.', 'success');
+                  },
+                  error: function(data) {
+                      swal('Houve um erro ao baixar os dados','Tente novamente por favor.', 'error')
+                  },
+                  complete: function() {
+                    deactivateBtn()
+                  },
+                });
+            } else{
+                swal('Filtro incorreto', 'Preencha todos os campos do formulário.', 'info');
+            }
+        }); //end form
+    });
+
+</script>
+</body>
+</html>

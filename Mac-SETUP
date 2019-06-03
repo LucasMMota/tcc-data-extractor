@@ -26,10 +26,14 @@ fi
 
 pip install Flask
 pip install pandas
+pip install psycopg2
+pip install mysql.connector
 
 # retry
 pip install Flask
 pip install pandas
+pip install psycopg2
+pip install mysql.connector
 
 DSUS_EXTRACTOR_ROOT_PATH=$(dirname $0)
 cd $DSUS_EXTRACTOR_ROOT_PATH/.src

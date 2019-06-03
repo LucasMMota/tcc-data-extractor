@@ -39,15 +39,29 @@
 
         form .col-form-label { font-weight: bold; }
 
+        .hover { cursor: pointer; }
+
+        .radio-tipo {
+            width: 25px;
+            display: initial;
+            height: calc(1.5em + .75rem + 2px);
+        }
+
+        .radio-tipo + label {
+            position: relative;
+            top: -12px;
+            margin: auto 10px;
+        }
+
     </style>
-    <title>DATASUS Extractor</title>
+    <title>DATASUS Importador</title>
 </head>
 <body>
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
             <a href="/" class="navbar-brand d-flex align-items-center"><i class="material-icons icon-header">cloud_download</i>
-                <strong class="pl-3">DATASUS Extractor</strong></a>
+                <strong class="pl-3">DATASUS Importador</strong></a>
             <a href="/sobre" class="navbar-brand d-flex align-items-center">Sobre</a>
         </div>
     </div>
@@ -57,7 +71,8 @@
         <div class="container">
             <div class="row pb-4">
                 <div class="col-sm-12">
-                    <h5>Utilize os filtros para selecionar os dados desejados para extração:</h5>
+                    <h5>Utilize os filtros para selecionar os dados desejados para importação:</h5>
+                    <hr>
                 </div>
             </div>
             <div class="row">
@@ -65,7 +80,7 @@
                     <form method="GET" action="/datasus-downloader">
                         <!-- Sistema -->
                         <div class="form-group row">
-                            <label for="input_sistema" class="col-sm-3 col-form-label">Sistema</label>
+                            <label for="input_sistema" class="col-sm-3 col-form-label">*Sistema</label>
                             <div class="col-sm-8">
                                 <select required name="input_sistema" id="input_sistema"
                                         class="selectpicker"
@@ -81,7 +96,7 @@
 
                         <!-- Tipo -->
                         <div class="form-group row">
-                            <label for="input_sistema" class="col-sm-3 col-form-label">Tipos de Arquivos</label>
+                            <label for="input_sistema" class="col-sm-3 col-form-label">*Tipos de Arquivos</label>
                             <div class="col-sm-8">
                                 <select required name="input_tipo[]" id="input_tipo"
                                         class="selectpicker" multiple
@@ -134,7 +149,7 @@
 
                         <!-- State -->
                         <div class="form-group row">
-                            <label for="input_sistema" class="col-sm-3 col-form-label">Estado</label>
+                            <label for="input_sistema" class="col-sm-3 col-form-label">*Estado</label>
                             <div class="col-sm-8">
                                 <select required name="input_estado[]" id="input_estado"
                                         class="selectpicker" multiple
@@ -173,7 +188,7 @@
 
                         <!-- De-->
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">De</label>
+                            <label class="col-sm-3 col-form-label">*De</label>
                             <div class="col-sm-3">
                                 <input required type="number" class="form-control" name="input_de_mes" id="input_de_mes"
                                        placeholder="Mês"
@@ -191,7 +206,7 @@
 
                         <!-- Ate-->
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Até</label>
+                            <label class="col-sm-3 col-form-label">*Até</label>
                             <div class="col-sm-3">
                                 <input required type="number" class="form-control" name="input_ate_mes"
                                        id="input_ate_mes" placeholder="Mês"
@@ -207,18 +222,54 @@
                         </div>
 
                         <!--BD-->
-                        <!--<div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Carregar no banco de
-                                dados?</label>
+                        <!--<div class="form-group row">-->
+                            <!--<label class="col-sm-3 col-form-label hover" for="input_insert_on_bd">Marque para inserir os parâmetros do banco de dados</label>-->
+                            <!--<div class="col-sm-3">-->
+                                <!--<input type="checkbox" class="hover checkbox-bd" id="input_insert_on_bd" />-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <br>
+                        <br>
+                        <h6>Caso deseje inserir os dados baixados em um banco insira os parâmetros abaixo:</h6>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tipo de BD</label>
+                            <div class="col-sm-6">
+                                <input type="radio" class="radio-tipo" name="input_db_type" id="input_db_type-1" value="mysql"><label class="hover" for="input_db_type-1">MySQL</label>
+                                <input type="radio" class="radio-tipo" name="input_db_type" id="input_db_type-2" value="postgres"><label class="hover" for="input_db_type-2">Postgres</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Host</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="input_db_host" name="input_db_host" placeholder="Ex: 127.0.0.1" value="127.0.0.1">
+                            </div>
+                        </div>
+                        <!--<div class="form-group row">-->
+                            <!--<label class="col-sm-3 col-form-label">Porta</label>-->
+                            <!--<div class="col-sm-6">-->
+                                <!--<input type="text" class="form-control" id="input_db_port" name="input_db_port" placeholder="Caso necessário">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Base de Dados</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="input_db_dbname" name="input_db_dbname" placeholder="Nome da base de dados">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Usuário</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="input_db_user" name="input_db_user">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Senha</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="input_db_password" name="input_db_password" placeholder="Deixe em branco para senha vazia" >
+                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Host</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" name="input_bd_host" placeholder="//">
-                            </div>
-                        </div>-->
                         <div class="d-flex justify-content-center pt-4">
                             <button id="btn-submit" class="btn btn-primary btn-lg" type="button">
                                 <span id="spinner-loading" class="spinner-grow spinner-grow-sm d-none" role="status"
@@ -237,7 +288,7 @@
 <footer class="text-muted">
     <div class="container">
         <h6>Desenvolvido por Lucas Mendes Mota da Fonseca | Orientação: Prof. Dra. Solange Nice Alves de Souza</h6>
-        <h6>Para contribuir acesse o projeto no <a href="https://github.com/LucasMMota/<todo>">GitHub</a></h6>
+        <h6>Para contribuir acesse o projeto no <a target="_blank" href="https://github.com/LucasMMota/<todo>">GitHub</a></h6>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
@@ -256,6 +307,26 @@
         $('#input_ate_mes').val('01');
         $('#input_ate_ano').val('2018');
     }
+
+    var is_valid_db_params = ()=>{
+        if(
+            (
+                !!$('input[name="input_db_type"]:checked').val() &&
+                !!$('#input_db_host').val() &&
+                !!$('#input_db_user').val() &&
+                !!$('#input_db_dbname').val()
+            ) || (
+                !$('input[name="input_db_type"]:checked').val() &&
+                !$('#input_db_host').val() &&
+                !$('#input_db_user').val() &&
+                !$('#input_db_dbname').val()
+           )
+        ){
+            return true;
+        }
+        return false;
+    }
+
     var validateForm = ()=>{
         if (
             !$('#input_sistema').val() ||
@@ -264,7 +335,8 @@
             !$('#input_de_mes').val() ||
             !$('#input_de_ano').val() ||
             !$('#input_ate_mes').val() ||
-            !$('#input_ate_ano').val()
+            !$('#input_ate_ano').val() ||
+            !is_valid_db_params()
         ){
             return false;
         }
@@ -305,7 +377,10 @@
                     activateBtn()
                   },
                   success: function(data) {
-                    swal('Dados importados com sucesso!', 'Confira no diretório "dados" na raíz do projeto.', 'success');
+                    if (data.status && data.status == 'success')
+                        swal('Dados importados com sucesso!', 'Confira no diretório "dados" na raíz do projeto.', 'success');
+                    else if(data.msg)
+                        swal('Houve um erro ao baixar os dados', data.msg, 'error')
                   },
                   error: function(data) {
                       swal('Houve um erro ao baixar os dados','Tente novamente por favor.', 'error')
@@ -315,7 +390,7 @@
                   },
                 });
             } else{
-                swal('Filtro incorreto', 'Preencha todos os campos do formulário.', 'info');
+                swal('Filtro incorreto!', 'Preencha corretamente os campos do formulário.', 'info');
             }
         }); //end form
     });

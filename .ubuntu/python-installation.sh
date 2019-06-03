@@ -17,10 +17,14 @@ cd $DSUS_EXTRACTOR_ROOT_PATH/.src
 
 pip install Flask
 pip install pandas
+pip install psycopg2
+pip install mysql.connector
 
 # retry
 pip install Flask
 pip install pandas
+pip install psycopg2
+pip install mysql.connector
 
 Rscript r-requirements.r
 
