@@ -1,9 +1,10 @@
+# coding=UTF-8
 import os
 import ftplib
 from .constants import RAW_FILES_DIR, ERROR_LOG_FILES_DIR
 from .converter import dbc2csv
 from .utils import clean_raw_files, create_raw_files, create_converted_files, build_file_path
-
+from .database_insert import insert_on_bd
 
 def save_log_on_errors(result, filename):
     # if not exists(ERROR_LOG_FILES_DIR):
@@ -58,18 +59,18 @@ def download(file_path, filename):
         save_log_on_errors(result, filename)
         # todo it's better to delete on local after download than list all the files in ftp and check before download?
         if_file_is_empty_delete_it(raw_file, filename)
+        return filename+'.csv'
     except:
         save_log_non_existent_file(filename)
         return
 
 
-def download_and_convert(system, date_range, file_types, states):
+def download_and_convert(system, date_range, file_types, states, input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password):
     try:
         print('Iniciando carga de dados...')
 
         create_raw_files()
         create_converted_files()
-
         for date in date_range:
             for file_type in file_types:
                 print(states)
@@ -79,23 +80,27 @@ def download_and_convert(system, date_range, file_types, states):
                     print('Tipo de arquivos: ' + file_type)
                     print('UF: ' + state)
 
-                    path_file, filename = build_file_path(system, file_type, date, state)
+                    path_file, raw_filename = build_file_path(system, file_type, date, state)
 
                     # Downloads files into raw-files
-                    download(path_file, filename)
+                    filename = download(path_file, raw_filename)
 
                     # Converts files and sabe on converted-files
                     dbc2csv(filename)
 
-        clean_raw_files()
+                    #load to db
+                    if input_db_type and input_db_host and input_db_dbname and input_db_user:
+                        try:
+                            insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, system, filename)
+                        except Exception as e:
+                            print(e)
+                            # return jsonify({'status': 'error',
+                            #                 'msg': 'Não foi possível inserir no banco. Cheque os parâmetros. ' + str(
+                            #                     e)})
 
+        clean_raw_files()
         return True
     except Exception as e:
         print(e)
         save_log_execution_error(str(e))
         return False
-
-# Todo load into db
-# todo move dir conveted e log pro dir visivel
-def load_to_database():
-    return

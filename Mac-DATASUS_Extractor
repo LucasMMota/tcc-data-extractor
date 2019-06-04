@@ -33,4 +33,4 @@ python open_url.py & python server.py
 echo ">>>>>>>>>>>>>>>>>>>>>>>>Aplicação encerrada. Feche o terminal.<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-ping localhost
+wait $!
