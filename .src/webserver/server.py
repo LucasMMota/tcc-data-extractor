@@ -40,7 +40,9 @@ def downloader():
 
     date_range = utils.get_date_range(input_de_mes+'/'+input_de_ano, input_ate_mes+'/'+input_ate_ano)
 
-    input_db_type = request.form['input_db_type']
+    input_db_type = ''
+    if 'input_db_type' in request.form:
+        input_db_type = request.form['input_db_type']
     input_db_host = request.form['input_db_host']
     input_db_dbname = request.form['input_db_dbname']
     input_db_user = request.form['input_db_user']
