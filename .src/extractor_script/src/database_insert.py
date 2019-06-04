@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-import psycopg2
-import mysql.connector
-import mysql
-import csv
 from constants import CONVERTED_FILES_DIR
+import csv
 import re
 
 
@@ -149,6 +146,9 @@ def get_field_names_from_csv(filename):
 
 
 def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, dsus_system, filename):
+    import mysql.connector
+    import mysql
+
     mysql_conn = mysql.connector.connect(
         host=input_db_host,
         user=input_db_user,
@@ -165,6 +165,8 @@ def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_passwo
 
 
 def perform_postgres(input_db_host, input_db_port, input_db_dbname, input_db_user, input_db_password, filename):
+    import psycopg2
+
     conn_string = "host='%s' dbname='%s' user='%s' password='%s'" % (
     input_db_host, input_db_dbname, input_db_user, input_db_password)
     # get a connection, if a connect cannot be made an exception will be raised here
