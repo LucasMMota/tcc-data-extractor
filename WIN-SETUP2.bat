@@ -48,13 +48,11 @@ set DATASUS_WEBSERVERDIR=%~dp0.src\webserver\
 pip install Flask
 pip install pandas
 pip install psycopg2
-pip install mysql.connector
 
 :: retry
 pip install Flask
 pip install pandas
 pip install psycopg2
-pip install mysql.connector
 
 CD "C:\Program Files\R\R-3.6.0\bin\"
 Rscript.exe %DATASUS_WORKINGDIR%.src\r-requirements.r
