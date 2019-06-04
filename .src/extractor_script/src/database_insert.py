@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 import psycopg2
 import mysql.connector
 import mysql
 import csv
 from constants import CONVERTED_FILES_DIR
+import re
 
 
 def insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename):
@@ -32,7 +34,7 @@ def table_exists(mysql_conn, tablename):
 
 
 def build_table_name(filename, dsus_system):
-    tablename = dsus_system + "_" + filename[:2]
+    tablename = dsus_system + "_" + filename[:-14]
     return tablename
 
 
@@ -51,7 +53,7 @@ def create_table(conn, tablename, arr_fieldnames):
                 {1}
                 )
             """.format(tablename.replace('\'', '\'\''), build_fields_names(arr_fieldnames))
-
+    # print(stmt)
     try:
         dbcur = conn.cursor(buffered=True)
         dbcur.execute(stmt)
@@ -84,6 +86,7 @@ def build_fields_to_insert(arr_fieldnames):
 def build_values_to_insert(dict_values):
     str_values = ''
     for value in dict_values.values():
+        value = re.sub(r'[^\x00-\x7f]', r'', value)
         str_values += '\''+ value + '\','
     str_values = str_values[:-1]
 
@@ -115,11 +118,13 @@ def insert_csv_into_db(mysql_conn, filename, tablename, arr_fieldnames):
                 counter +=1
                 if (batch == 300) or (counter == row_count):
                     batch_stmt = batch_stmt[:-1] + ';'
+                    # print('stmbatch='+batch_stmt)
                     cur = mysql_conn.cursor(buffered=True)
                     cur.execute(batch_stmt)
                     mysql_conn.commit()
                     cur.close()
                     batch = 0
+                    # print('batchstm='+batch_stmt[:3000])
                     batch_stmt = 'INSERT INTO {0} ({1}) VALUES '.format(tablename.replace('\'', '\'\''), str_fields)
             return True
         except Exception as e:
@@ -137,6 +142,7 @@ def get_field_names_from_csv(filename):
                 if (not field):
                     field = 'unnamed_col_' + str(i)
                     i += 1
+                field = '`'+field+'`'
                 arr_fields_names.append(field)
             return arr_fields_names
     raise Exception('Erro ao pegar nomes dos campos do CSV para inserir no banco.')
@@ -181,4 +187,4 @@ def perform_postgres(input_db_host, input_db_port, input_db_dbname, input_db_use
     return True
 
 
-# insert_on_bd('mysql', '127.0.0.1', 'tcc', 'root', '', 'SIHSUS', 'SPRO1801.dbc.csv')
+# insert_on_bd('mysql', '127.0.0.1', 'tcc', 'root', '', 'SIHSUS', 'ABOES1801.dbc.csv')

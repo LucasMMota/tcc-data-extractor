@@ -86,9 +86,9 @@ def download_and_convert(system, date_range, file_types, states, input_db_type, 
                     filename = download(path_file, raw_filename)
 
                     # Converts files and sabe on converted-files
-                    dbc2csv(filename)
+                    dbc2csv(raw_filename)
 
-                    #load to db
+                    # load to db
                     if input_db_type and input_db_host and input_db_dbname and input_db_user:
                         try:
                             insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, system, filename)
