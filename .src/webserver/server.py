@@ -1,10 +1,10 @@
 # coding=UTF-8
 import sys
-from flask import Flask, render_template, jsonify, request
-# import os
+from flask import Flask, render_template, jsonify, request, send_from_directory
+import os
 # sys.path.append(
 #     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-
+__dirname__ = os.path.dirname(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
@@ -13,6 +13,25 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.route("/layout-sihsus")
+def getfile_sihsus():
+    return send_from_directory(__dirname__+'/docs/', 'SIHSUS.pdf', as_attachment=True)
+
+@app.route("/layout-chia")
+def getfile_chia():
+    return send_from_directory(__dirname__+'/docs/', 'CIHA.pdf', as_attachment=True)
+
+@app.route("/layout-chi")
+def getfile_chi():
+    return send_from_directory(__dirname__+'/docs/', 'CIH.pdf', as_attachment=True)
+
+@app.route("/layout-siasus")
+def getfile_siasus():
+    return send_from_directory(__dirname__+'/docs/', 'SIASUS.pdf', as_attachment=True)
+
+@app.route("/informacoes")
+def informacoes():
+    return render_template("informacoes.html")
 
 @app.route("/sobre")
 def sobre():

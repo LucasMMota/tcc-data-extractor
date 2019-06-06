@@ -53,16 +53,25 @@
             margin: auto 10px;
         }
 
+        .navbar>.container {
+            justify-content: flex-end !important;
+        }
+
+        .first-menu-item {
+                margin-right: auto;
+        }
+
     </style>
-    <title>DATASUS Importador</title>
+    <title>Importador DATASUS</title>
 </head>
 <body>
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a href="/" class="navbar-brand d-flex align-items-center"><i class="material-icons icon-header">cloud_download</i>
-                <strong class="pl-3">DATASUS Importador</strong></a>
-            <a href="/sobre" class="navbar-brand d-flex align-items-center">Sobre</a>
+        <div class="container">
+            <a href="/" class="navbar-brand d-flex first-menu-item"><i class="material-icons icon-header">cloud_download</i>
+                <strong class="pl-3">Importador DATASUS</strong></a>
+            <a href="/informacoes" class="navbar-brand d-flex">Informações sobre os dados</a>
+            <a href="/sobre" class="navbar-brand d-flex">Sobre o projeto</a>
         </div>
     </div>
 </header>
@@ -101,46 +110,65 @@
                                 <select required name="input_tipo[]" id="input_tipo"
                                         class="selectpicker" multiple
                                         title="Selecione o tipo de dados do sistema">
+                                    <!--RD - -->
+                                    <!--RJ - -->
+                                    <!--SP - -->
+                                    <!--ER - -->
+                                    <!--AB - -->
+                                    <!--ABO - -->
+                                    <!--ACF - -->
+                                    <!--AD - -->
+                                    <!--AM - -->
+                                    <!--AN - -->
+                                    <!--AQ - -->
+                                    <!--AR - -->
+                                    <!--ATD - -->
+                                    <!--PA - -->
+                                    <!--PS - -->
+                                    <!--SAD - -->
+                                    <!--CR - -->
+                                    <!--CIHA - -->
+                                    <!--PN - -->
                                     <optgroup class="options-tipo options-sistema-SIHSUS" label="SIHSUS">
-                                        <option value="RD">RD - AIH Reduzida</option>
-                                        <option value="RJ">RJ - AIH Rejeitadas</option>
-                                        <option value="SP">SP - Serviços Profissionais</option>
-                                        <option value="ER">ER - AIH Rejeitadas</option>
+                                        <option value="RD">AIH Reduzida</option>
+                                        <option value="RJ">AIH Rejeitadas</option>
+                                        <option value="SP">Serviços Profissionais</option>
+                                        <option value="ER">AIH Rejeitadas</option>
                                     </optgroup>
                                     <optgroup class="options-tipo options-sistema-SIASUS" label="SIASUS">
-                                        <option value="AB">AB - APAC de Acompanhamento a Cirurgia Bariatrica - A Partir
+                                        <option value="AB">APAC de Acompanhamento a Cirurgia Bariatrica - A Partir
                                             de Jan/2008 ate Mar/2013
                                         </option>
-                                        <option value="ABO">ABO - APAC Acompanhamento Pós Cirurgia Bariatrica - A Partir
+                                        <option value="ABO">APAC Acompanhamento Pós Cirurgia Bariatrica - A Partir
                                             de Abr/2013
                                         </option>
-                                        <option value="ACF">ACF - APAC Confeção de Fístula Arteriovenosa - A Partir de
+                                        <option value="ACF">APAC Confeção de Fístula Arteriovenosa - A Partir de
                                             Jun/2014
                                         </option>
-                                        <option value="AD">AD - APAC de Laudos Diversos - A Partir de Jan/2008</option>
-                                        <option value="AM">AM - APAC de Medicamentos - A Partir de Jan/2008</option>
-                                        <option value="AN">AN - APAC de Nefrologia - A Partir de Jan/2008 até Out/2014
+                                        <option value="AD">APAC de Laudos Diversos - A Partir de Jan/2008</option>
+                                        <option value="AM">APAC de Medicamentos - A Partir de Jan/2008</option>
+                                        <option value="AN">APAC de Nefrologia - A Partir de Jan/2008 até Out/2014
                                         </option>
-                                        <option value="AQ">AQ - APAC de Quimioterapia - A Partir de Jan/2008</option>
-                                        <option value="AR">AR - APAC de Radioterapia - A Partir de Jan/2008</option>
-                                        <option value="ATD">ATD - APAC Tratamento Dialítico - A Partir de Jun/2014
+                                        <option value="AQ">APAC de Quimioterapia - A Partir de Jan/2008</option>
+                                        <option value="AR">APAC de Radioterapia - A Partir de Jan/2008</option>
+                                        <option value="ATD">APAC Tratamento Dialítico - A Partir de Jun/2014
                                         </option>
-                                        <option value="PA">PA - Produção Ambulatorial - A Partir de Jul/1994</option>
-                                        <option value="PS">PS - Psicossocial - A Partir de Jan/2013</option>
-                                        <option value="SAD">SAD - Atenção Domiciliar - A Partir de Nov/2012</option>
+                                        <option value="PA">Produção Ambulatorial - A Partir de Jul/1994</option>
+                                        <option value="PS">Psicossocial - A Partir de Jan/2013</option>
+                                        <option value="SAD">Atenção Domiciliar - A Partir de Nov/2012</option>
                                     </optgroup>
                                     <optgroup class="options-tipo options-sistema-CIH" label="CIH">
-                                        <option value="CR">CR - Comunicação de Internação Hospitalar - A partir de
+                                        <option value="CR">Comunicação de Internação Hospitalar - A partir de
                                             Jan/2008
                                         </option>
                                     </optgroup>
                                     <optgroup class="options-tipo options-sistema-CIHA" label="CIHA">
-                                        <option value="CIHA">CIHA - Comunicação de Internação Hospitalar e Ambulatorial
+                                        <option value="CIHA">Comunicação de Internação Hospitalar e Ambulatorial
                                             - A partir de Jan/2011
                                         </option>
                                     </optgroup>
                                     <optgroup class="options-tipo options-sistema-SISPRENATAL" label="SISPRENATAL">
-                                        <option value="PN">PN - Pré-Natal</option>
+                                        <option value="PN">Pré-Natal</option>
                                     </optgroup>
                                 </select>
 

@@ -60,13 +60,6 @@
         .first-menu-item {
                 margin-right: auto;
         }
-
-
-
-
-
-
-
     </style>
     <title>Importador DATASUS</title>
 </head>
@@ -87,57 +80,90 @@
         <div class="container">
             <div class="row pb-4">
                 <div class="col-sm-12">
-                    <h5>Motivação:</h5>
+                    <h5>Explicação sobre os dados e funcionamento do importador Datasus:</h5>
                     <hr>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <p>
-                        Este sistema foi desenvolvido como parte do projeto de conclusão do curso de BIG DATA -
-                        Inteligência na gestão dos dados.
-                        Foi pensado devido a dificuldade em se obter os dados do DATASUS, bem como
-                        convertê-los e de fatos utilizá-los em análises de dados. Este sistema propõe uma
-                        maneira mais rápida e fácil de carregar os dados remotos em um banco de dados ou arquivos
-                        locais.
+                        Cada sistema possui um ou mais tipos de arquivos. Ao baixá-los será possível encontrar cada arquivo
+                        no diretório <strong>dados</strong> na raíz do projeto.<br> Os arquivos serão organizados na estrutura TTEEAAMM.dbc.csv, onde
+                    TT é uma sigla do tipo (ver siglas abaixo), EE o estado (UF), AA o ano e MM o mês. <br>
+                        Caso a opção de carregamento na base de dados MySQL esteja ativada, os arquivos serão também carregados no banco de dados especificado.
+                        Cada tipo de arquivo (RD, RJ, SP, etc) representará uma tabela na base de dados.
                     </p>
-                </div>
-            </div>
-            <br>
-            <div class="row pb-4">
-                <div class="col-sm-12">
-                    <h5>Tecnologias:</h5>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>
-                        O sistema foi desenvolvido utilizando-se a linguagem Python, R (para conversão dos arquivos
-                        originais DBC em CSV),
-                        MySQL (suporte para carregamento nessa base), HTML e CSS para interface web, Shell e Batch
-                        scripts para criação
-                        dos aplicativos para os sistemas operacionais.
-                    </p>
-                </div>
-            </div>
-            <br>
-            <div class="row pb-4">
-                <div class="col-sm-12">
-                    <h5>Contribuições:</h5>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>
-                        O projeto possui código aberto e está hospedado no <a href="http://github.com/lucasmmota/404">Github</a>.
-                        <br>Caso haja interesse em colaborar basta criar uma <i>pull request</i> ou entrar em contato: lucas.lmmf@gmail.com
-                    </p>
-                </div>
-            </div>
+                    <h6>SIHSUS</h6>
+                    <p><a href="/layout-sihsus">Layout dos arquivos SIHSUS</a></p>
+                    <p>Arquivos:</p>
+                    <ul>
+                        <li>RD - AIH Reduzida</li>
+                        <li>RJ - AIH Rejeitadas</li>
+                        <li>SP - Serviços Profissionais</li>
+                        <li>ER - AIH Rejeitadas</li>
+                    </ul>
 
+                    <h6>SIASUS</h6>
+                    <p>Arquivos:</p>
+                    <p><a href="/layout-siasus">Layout dos arquivos SIASUS</a></p>
+                    <p>Arquivos:</p>
+                    <ul>
+                        <li>AB - APAC de Acompanhamento a Cirurgia Bariatrica - A Partir de Jan/2008 ate Mar/2013</li>
+                        <li>ABO - APAC Acompanhamento Pós Cirurgia Bariatrica - A Partir de Abr/2013</li>
+                        <li>ACF - APAC Confeção de Fístula Arteriovenosa - A Partir de Jun/2014</li>
+                        <li>AD - APAC de Laudos Diversos - A Partir de Jan/2008</li>
+                        <li>AM - APAC de Medicamentos - A Partir de Jan/2008</li>
+                        <li>AN - APAC de Nefrologia - A Partir de Jan/2008 até Out/2014</li>
+                        <li>AQ - APAC de Quimioterapia - A Partir de Jan/2008</li>
+                        <li>AR - APAC de Radioterapia - A Partir de Jan/2008</li>
+                        <li>ATD - APAC Tratamento Dialítico - A Partir de Jun/2014</li>
+                        <li>PA - Produção Ambulatorial - A Partir de Jul/1994</li>
+                        <li>PS - Psicossocial - A Partir de Jan/2013</li>
+                        <li>SAD - Atenção Domiciliar - A Partir de Nov/2012</li>
+                    </ul>
 
+                    <!--<h6>SIM</h6>-->
+                    <!--<ul>-->
+                    <!--<li>DOP - Declarações de Óbito - 2017 preliminar-->
+                    <!--<li>DO - Declarações de Óbito - 1979 a 2016-->
+                    <!--<li>DOFETP - Declarações de Óbitos fetais - 2017 preliminar-->
+                    <!--<li>DOFET - Declarações de Óbitos fetais - 1979 a 2016-->
+                    <!--<li>DOEXTP - Declarações de Óbitos por causas externas - 2017 preliminar-->
+                    <!--<li>DOEXT - Declarações de Óbitos por causas externas - 1979 a 2016-->
+                    <!--<li>DOINFP - Declarações de Óbitos infantis - 2017 preliminar-->
+                    <!--<li>DOINF - Declarações de Óbitos infantis - 1979 a 2016-->
+                    <!--<li>DOMATP - Declarações de Óbitos maternos - 2017 preliminar-->
+                    <!--<li>DOMAT - Declarações de Óbitos maternos - 1996 a 2016-->
+                    <!--</ul>-->
+
+                    <h6>CIH</h6>
+                    <p><a href="/layout-chia">Layout dos arquivos CIHA</a></p>
+                    <p>Arquivos:</p>
+                    <ul>
+                        <li>CR - Comunicação de Internação Hospitalar - A partir de Jan/2008</li>
+                    </ul>
+
+                    <h6>CIHA</h6>
+                    <p><a href="/layout-cih">Layout dos arquivos CIH</a></p>
+                    <p>Arquivos:</p>
+                    <ul>
+                        <li>CIHA - Comunicação de Internação Hospitalar e Ambulatorial - A partir de Jan/2011</li>
+                    </ul>
+
+                    <h6>SISPRENATAL</h6>
+                    <p><i>Sem refências de layout dos arquivos</i></p>
+                    <p>Arquivos:</p>
+                    <ul>
+                        <li>PN - Pré-Natal</li>
+                    </ul>
+
+                    <!--<h6>SINASC arquivos:</h6>-->
+                    <!--<ul>-->
+                        <!--<li>DN - Declarações de nascidos vivos 1994 a 2016</li>-->
+                        <!--<li>DNP - Declarações de nascidos vivos 2017 preliminar</li>-->
+                    <!--</ul>-->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -257,7 +283,6 @@
             }
         }); //end form
     });
-
 
 
 
