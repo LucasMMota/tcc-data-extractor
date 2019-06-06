@@ -1,0 +1,1 @@
+An error ocurred on the execution: [Errno 2] No such file or directory: '/Users/lucas/Documents/Pos-POLI/Monografia-2019/tcc-data-extractor/.src/extractor_script/raw-files/'

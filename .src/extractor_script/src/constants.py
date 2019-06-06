@@ -2,7 +2,7 @@
 from os.path import dirname, abspath
 
 RAW_FILES_DIR = dirname(dirname(abspath(__file__)))+'/raw-files/'
-ERROR_LOG_FILES_DIR = dirname(dirname(dirname(dirname(abspath(__file__)))))+'/'  # Todo talvez chamar apenas de logs
+ERROR_LOG_FILES_DIR = dirname(dirname(dirname(dirname(abspath(__file__)))))+'/'
 SRC_DIR = (dirname(abspath(__file__)))
 CONVERTED_FILES_DIR = dirname(dirname(dirname(dirname(abspath(__file__)))))+'/dados/' # todo mudar no doc o converted-files de staging etc pros novos nomes
 
@@ -69,7 +69,7 @@ DATASUS_SYSTEM_PATHS = {
     'CIH': '/dissemin/publicos/CIH/200801_201012/Dados/',
     'CIHA': '/dissemin/publicos/CIHA/201101_/Dados/',
     'SISPRENATAL': '/dissemin/publicos/SISPRENATAL/201201_/Dados/',
-    # 'SIM': '/dissemin/publicos/SIM/PRELIM/DOFET/', # todo
+    # 'SIM': '/dissemin/publicos/SIM/PRELIM/DOFET/',
     #'SINASC': '/dissemin/publicos/SINASC/NOV/DNRES/', # todo por ano
 }
 

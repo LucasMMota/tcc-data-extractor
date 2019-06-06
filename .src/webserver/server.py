@@ -75,7 +75,7 @@ def downloader():
     #     except Exception as e:
     #         print(e)
     #         return jsonify({'status': 'error', 'msg': 'Não foi possível inserir no banco. Cheque os parâmetros. '+ str(e)})
-
+    # TODO remover todos os prints
     if status is True:
         return jsonify({'status': 'success'})
     else:

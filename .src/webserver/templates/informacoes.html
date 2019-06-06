@@ -60,6 +60,8 @@
         .first-menu-item {
                 margin-right: auto;
         }
+
+
     </style>
     <title>Importador DATASUS</title>
 </head>
@@ -87,10 +89,13 @@
             <div class="row">
                 <div class="col-md-10">
                     <p>
-                        Cada sistema possui um ou mais tipos de arquivos. Ao baixá-los será possível encontrar cada arquivo
-                        no diretório <strong>dados</strong> na raíz do projeto.<br> Os arquivos serão organizados na estrutura TTEEAAMM.dbc.csv, onde
-                    TT é uma sigla do tipo (ver siglas abaixo), EE o estado (UF), AA o ano e MM o mês. <br>
-                        Caso a opção de carregamento na base de dados MySQL esteja ativada, os arquivos serão também carregados no banco de dados especificado.
+                        Cada sistema possui um ou mais tipos de arquivos. Ao baixá-los será possível encontrar cada
+                        arquivo
+                        no diretório <strong>dados</strong> na raíz do projeto.<br> Os arquivos serão organizados na
+                        estrutura TTEEAAMM.dbc.csv, onde
+                        TT é uma sigla do tipo (ver siglas abaixo), EE o estado (UF), AA o ano e MM o mês. <br>
+                        Caso a opção de carregamento na base de dados MySQL esteja ativada, os arquivos serão também
+                        carregados no banco de dados especificado.
                         Cada tipo de arquivo (RD, RJ, SP, etc) representará uma tabela na base de dados.
                     </p>
                     <h6>SIHSUS</h6>
@@ -159,9 +164,15 @@
 
                     <!--<h6>SINASC arquivos:</h6>-->
                     <!--<ul>-->
-                        <!--<li>DN - Declarações de nascidos vivos 1994 a 2016</li>-->
-                        <!--<li>DNP - Declarações de nascidos vivos 2017 preliminar</li>-->
+                    <!--<li>DN - Declarações de nascidos vivos 1994 a 2016</li>-->
+                    <!--<li>DNP - Declarações de nascidos vivos 2017 preliminar</li>-->
                     <!--</ul>-->
+
+                    <div class="mt-5">
+                        <p>Link para os arquivos de dados no DATASUS: <a target="_blank"
+                                                                         href="http://www2.datasus.gov.br/DATASUS/index.php?area=0901">clique
+                            aqui</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -181,114 +192,5 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-
-    var mock=()=>{
-        $('#input_sistema').val('SIHSUS');
-        $('#input_tipo').val(['SP']);
-        $('#input_estado').val(['RO']);
-        $('#input_de_mes').val('01');
-        $('#input_de_ano').val('2018');
-        $('#input_ate_mes').val('01');
-        $('#input_ate_ano').val('2018');
-    }
-
-    var is_valid_db_params = ()=>{
-        if(
-            (
-                <!--!!$('input[name="input_db_type"]:checked').val() &&-->
-                !!$('#input_db_host').val() &&
-                !!$('#input_db_user').val() &&
-                !!$('#input_db_dbname').val()
-            ) || (
-                <!--!$('input[name="input_db_type"]:checked').val() &&-->
-                !$('#input_db_host').val() &&
-                !$('#input_db_user').val() &&
-                !$('#input_db_dbname').val()
-           )
-        ){
-            return true;
-        }
-        return false;
-    }
-
-    var validateForm = ()=>{
-        if (
-            !$('#input_sistema').val() ||
-            !$('#input_tipo').val().length ||
-            !$('#input_estado').val().length ||
-            !$('#input_de_mes').val() ||
-            !$('#input_de_ano').val() ||
-            !$('#input_ate_mes').val() ||
-            !$('#input_ate_ano').val() ||
-            !is_valid_db_params()
-        ){
-            return false;
-        }
-        return true;
-    }
-
-    var activateBtn = () => {
-        $('#btn-submit').attr('disabled', 'true')
-        $('#spinner-loading').removeClass('d-none')
-    }
-
-    var deactivateBtn = () => {
-        $('#btn-submit').removeAttr('disabled')
-        $('#spinner-loading').addClass('d-none')
-    }
-
-    jQuery(document).ready(()=>{
-        let yearToday = new Date()
-        yearToday = yearToday.getFullYear()
-        $('#input_ate_ano').attr('placeholder', 'Ano (máx: '+ yearToday +')')
-
-        $('#input_sistema').on('change', (elem)=>{
-            sistema = elem.target.value
-            $('#input_tipo').selectpicker('deselectAll');
-            $('.options-tipo').attr('disabled', 'true')
-            $('.options-sistema-'+sistema).removeAttr('disabled')
-        });
-
-        $('#btn-submit').on('click', (e)=>{
-                                                    //TODO REMOVER
-                                                    //mock()
-            e.preventDefault();
-
-            valid = validateForm();
-            if (valid){
-                $.ajax({
-                  url: '/datasus-downloader',
-                  type: 'POST',
-                  data: $('form').serialize(),
-                  dataType: 'json',
-                  beforeSend: function() {
-                    activateBtn()
-                  },
-                  success: function(data) {
-                    if (data.status && data.status == 'success')
-                        swal('Dados importados com sucesso!', 'Confira no diretório "dados" na raíz do projeto.', 'success');
-                    else if(data.msg)
-                        swal('Houve um erro ao baixar os dados', data.msg, 'error')
-                  },
-                  error: function(data) {
-                      swal('Houve um erro ao baixar os dados','Tente novamente por favor.', 'error')
-                  },
-                  complete: function() {
-                    deactivateBtn()
-                  },
-                });
-            } else{
-                swal('Filtro incorreto!', 'Preencha corretamente os campos do formulário.', 'info');
-            }
-        }); //end form
-    });
-
-
-
-
-
-
-</script>
 </body>
 </html>

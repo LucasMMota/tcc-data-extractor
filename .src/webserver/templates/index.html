@@ -302,7 +302,7 @@
                             <button id="btn-submit" class="btn btn-primary btn-lg" type="button">
                                 <span id="spinner-loading" class="spinner-grow spinner-grow-sm d-none" role="status"
                                       aria-hidden="true"></span>
-                                Baixar Dados
+                                <span id="btn-text">Baixar Dados</span>
                             </button>
                         </div>
                     </form>
@@ -374,11 +374,13 @@
     var activateBtn = () => {
         $('#btn-submit').attr('disabled', 'true')
         $('#spinner-loading').removeClass('d-none')
+        $('#btn-text').html('Baixando, aguarde')
     }
 
     var deactivateBtn = () => {
         $('#btn-submit').removeAttr('disabled')
         $('#spinner-loading').addClass('d-none')
+        $('#btn-text').html('Baixar Dados')
     }
 
     jQuery(document).ready(()=>{

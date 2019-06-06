@@ -89,11 +89,6 @@ def date_to():
     return date
 
 
-# todo add on filter
-# def get_download_limit():
-#     return 1000
-
-
 def get_filters():
     system = get_system()
     file_types = get_types()
