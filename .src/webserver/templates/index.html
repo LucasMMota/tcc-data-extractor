@@ -191,13 +191,13 @@
                             <label class="col-sm-3 col-form-label">*De</label>
                             <div class="col-sm-3">
                                 <input required type="number" class="form-control" name="input_de_mes" id="input_de_mes"
-                                       placeholder="Mês"
+                                       placeholder="Mês (1-12)"
                                        min="1" max="12">
                             </div>
                             /
                             <div class="col-sm-3">
                                 <input required type="number" class="form-control" name="input_de_ano" id="input_de_ano"
-                                       placeholder="Ano"
+                                       placeholder="Ano (mín: 1992)"
                                        min="1990">
                                 <!-- Ver data minima que tem arquivos-->
                             </div>
@@ -209,7 +209,7 @@
                             <label class="col-sm-3 col-form-label">*Até</label>
                             <div class="col-sm-3">
                                 <input required type="number" class="form-control" name="input_ate_mes"
-                                       id="input_ate_mes" placeholder="Mês"
+                                       id="input_ate_mes" placeholder="Mês (1-12)"
                                        min="1" max="12">
                             </div>
                             /
@@ -354,6 +354,10 @@
     }
 
     jQuery(document).ready(()=>{
+        let yearToday = new Date()
+        yearToday = yearToday.getFullYear()
+        $('#input_ate_ano').attr('placeholder', 'Ano (máx: '+ yearToday +')')
+
         $('#input_sistema').on('change', (elem)=>{
             sistema = elem.target.value
             $('#input_tipo').selectpicker('deselectAll');
