@@ -4,9 +4,9 @@ import csv
 import re
 
 
-def insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename):
+def insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename, state):
     if input_db_type == 'mysql':
-        return perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename)
+        return perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename, state)
     else:
         return
         # return perform_postgres(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename)
@@ -48,6 +48,7 @@ def build_fields_names(arr_fieldnames):
 def create_table(conn, tablename, arr_fieldnames):
     stmt = """CREATE TABLE {0} (
                 id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+                UF TEXT,
                 {1}
                 )
             """.format(tablename.replace('\'', '\'\''), build_fields_names(arr_fieldnames))
@@ -99,31 +100,31 @@ def get_file_rows(filename):
     raise Exception('Erro ler tamanho do CSV para inserir no banco.')
 
 
-def insert_csv_into_db(mysql_conn, filename, tablename, arr_fieldnames):
+def insert_csv_into_db(mysql_conn, filename, tablename, arr_fieldnames, state):
     with open(CONVERTED_FILES_DIR+filename) as csvfile:
         try:
             str_fields = build_fields_to_insert(arr_fieldnames)
             row_count = get_file_rows(filename)
-            batch_stmt = 'INSERT INTO {0} ({1}) VALUES '.format(tablename.replace('\'', '\'\''), str_fields)
+            batch_stmt = 'INSERT INTO {0} (UF, {1}) VALUES '.format(tablename.replace('\'', '\'\''), str_fields)
             batch = 0
             counter = 0
             reader = csv.DictReader(csvfile, delimiter=',')
             for row in reader:
                 str_values = build_values_to_insert(row)
-                stmt = " ({0}),".format(str_values)
+                stmt = " (\'{0}\', {1}),".format(state, str_values)
                 batch_stmt += stmt
                 batch +=1
                 counter +=1
                 if (batch == 300) or (counter == row_count):
                     batch_stmt = batch_stmt[:-1] + ';'
+                    # print('batchstm='+batch_stmt[:3000])
                     # print('stmbatch='+batch_stmt)
                     cur = mysql_conn.cursor(buffered=True)
                     cur.execute(batch_stmt)
                     mysql_conn.commit()
                     cur.close()
                     batch = 0
-                    # print('batchstm='+batch_stmt[:3000])
-                    batch_stmt = 'INSERT INTO {0} ({1}) VALUES '.format(tablename.replace('\'', '\'\''), str_fields)
+                    batch_stmt = 'INSERT INTO {0} (UF, {1}) VALUES '.format(tablename.replace('\'', '\'\''), str_fields)
             return True
         except Exception as e:
             print(e)
@@ -146,7 +147,7 @@ def get_field_names_from_csv(filename):
     raise Exception('Erro ao pegar nomes dos campos do CSV para inserir no banco.')
 
 
-def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, dsus_system, filename):
+def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, dsus_system, filename, state):
     import mysql.connector
     import mysql
 
@@ -160,7 +161,7 @@ def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_passwo
     tablename = build_table_name(filename, dsus_system)
     arr_fieldnames = get_field_names_from_csv(filename)
     create_table_if_not_exists(mysql_conn, tablename, arr_fieldnames)
-    insert_csv_into_db(mysql_conn, filename, tablename, arr_fieldnames)
+    insert_csv_into_db(mysql_conn, filename, tablename, arr_fieldnames, state)
 
     return True
 
@@ -190,4 +191,4 @@ def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_passwo
 #     return True
 
 
-# insert_on_bd('mysql', '127.0.0.1', 'tcc', 'root', '', 'SIHSUS', 'ABOES1801.dbc.csv')
+# insert_on_bd('mysql', '127.0.0.1', 'tcc', 'root', '', 'SIHSUS', 'ABOES1801.dbc.csv', 'ES')
