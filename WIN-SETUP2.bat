@@ -47,12 +47,12 @@ set DATASUS_WEBSERVERDIR=%~dp0.src\webserver\
 
 pip install Flask
 pip install pandas
-pip install psycopg2
+::pip install psycopg2
 
 :: retry
 pip install Flask
 pip install pandas
-pip install psycopg2
+::pip install psycopg2
 
 CD "C:\Program Files\R\R-3.6.0\bin\"
 Rscript.exe %DATASUS_WORKINGDIR%.src\r-requirements.r

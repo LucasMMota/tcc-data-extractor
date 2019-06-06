@@ -89,7 +89,7 @@ def download_and_convert(system, date_range, file_types, states, input_db_type, 
                     dbc2csv(raw_filename)
 
                     # load to db
-                    if input_db_type and input_db_host and input_db_dbname and input_db_user:
+                    if input_db_type == 'mysql' and input_db_host and input_db_dbname and input_db_user:
                         try:
                             insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, input_db_password, system, filename)
                         except Exception as e:

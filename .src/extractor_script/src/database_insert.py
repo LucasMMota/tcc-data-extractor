@@ -8,7 +8,8 @@ def insert_on_bd(input_db_type, input_db_host, input_db_dbname, input_db_user, i
     if input_db_type == 'mysql':
         return perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename)
     else:
-        return perform_postgres(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename)
+        return
+        # return perform_postgres(input_db_host, input_db_dbname, input_db_user, input_db_password, input_sistema, filename)
 
 
 def table_exists(mysql_conn, tablename):
@@ -164,29 +165,29 @@ def perform_mysql(input_db_host, input_db_dbname, input_db_user, input_db_passwo
     return True
 
 
-def perform_postgres(input_db_host, input_db_port, input_db_dbname, input_db_user, input_db_password, filename):
-    import psycopg2
-
-    conn_string = "host='%s' dbname='%s' user='%s' password='%s'" % (
-    input_db_host, input_db_dbname, input_db_user, input_db_password)
-    # get a connection, if a connect cannot be made an exception will be raised here
-    conn = psycopg2.connect(conn_string)
-
-    # conn.cursor will return a cursor object, you can use this cursor to perform queries
-    cursor = conn.cursor(buffered=True)
-
-    # execute our Query
-    cursor.execute("SELECT * FROM my_table")
-
-    # retrieve the records from the database
-    records = cursor.fetchall()
-
-    # print out the records using pretty print
-    # note that the NAMES of the columns are not shown, instead just indexes.
-    # for most people this isn't very useful so we'll show you how to return
-    # columns as a dictionary (hash) in the next example.
-    print(records)
-    return True
+# def perform_postgres(input_db_host, input_db_port, input_db_dbname, input_db_user, input_db_password, filename):
+#     import psycopg2
+#
+#     conn_string = "host='%s' dbname='%s' user='%s' password='%s'" % (
+#     input_db_host, input_db_dbname, input_db_user, input_db_password)
+#     # get a connection, if a connect cannot be made an exception will be raised here
+#     conn = psycopg2.connect(conn_string)
+#
+#     # conn.cursor will return a cursor object, you can use this cursor to perform queries
+#     cursor = conn.cursor(buffered=True)
+#
+#     # execute our Query
+#     cursor.execute("SELECT * FROM my_table")
+#
+#     # retrieve the records from the database
+#     records = cursor.fetchall()
+#
+#     # print out the records using pretty print
+#     # note that the NAMES of the columns are not shown, instead just indexes.
+#     # for most people this isn't very useful so we'll show you how to return
+#     # columns as a dictionary (hash) in the next example.
+#     print(records)
+#     return True
 
 
 # insert_on_bd('mysql', '127.0.0.1', 'tcc', 'root', '', 'SIHSUS', 'ABOES1801.dbc.csv')
