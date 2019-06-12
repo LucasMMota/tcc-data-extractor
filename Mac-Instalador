@@ -1,0 +1,58 @@
+#!/bin/bash
+
+ECHO .
+ECHO .
+ECHO .
+ECHO INICIANDO A INSTALAÇÃO DOS REQUISITOS, O QUE PODERÁ DEMORAR ALGUNS MINUTOS
+ECHO AGUARDE ATÉ QUE A MENSAGEM DE FINALIZAÇÃO DA INSTALAÇÃO SEJA EXIBIDA
+ECHO .
+ECHO .
+ECHO .
+
+if ! hash python; then
+	sudo apt-get install python
+fi
+
+if ! hash pip; then
+	sudo apt-get install python-pip
+fi
+
+if ! hash Rscript; then
+	sudo apt-get install r-base
+fi
+
+
+
+
+pip install Flask
+pip install pandas
+pip install mysql.connector
+#if hash pg_config; then
+#    pip install psycopg2
+#fi
+
+# retry
+#if hash pg_config; then
+#    pip install psycopg2
+#fi
+pip install mysql.connector
+pip install pandas
+pip install Flask
+
+DSUS_EXTRACTOR_ROOT_PATH=$(dirname $0)
+cd $DSUS_EXTRACTOR_ROOT_PATH/.src
+pwd
+Rscript r-requirements.r
+
+
+ECHO .
+ECHO .
+ECHO .
+ECHO ">>> INSTALAÇÃO REALIZADA COM SUCESSO! FECHE O TERMINAL."
+wait $!
+
+while [ 1 ]
+do
+	echo ""
+	sleep 100
+done

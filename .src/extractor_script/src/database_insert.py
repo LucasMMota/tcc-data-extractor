@@ -86,7 +86,7 @@ def build_values_to_insert(dict_values):
     str_values = ''
     for value in dict_values.values():
         value = re.sub(r'[^\x00-\x7f]', r'', value)
-        str_values += '\''+ value + '\','
+        str_values += '\'' + value + '\','
     str_values = str_values[:-1]
 
     return str_values
